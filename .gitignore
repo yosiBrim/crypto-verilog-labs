@@ -1,0 +1,36 @@
+# ==========================
+# ModelSim / Questa Sim
+# ==========================
+work/
+transcript
+*.wlf
+*.vstf
+modelsim.ini
+
+# ==========================
+# Vivado / Xilinx
+# ==========================
+*.jou
+*.log
+*.str
+*.pb
+*.wdb
+*.dir/
+*.hw/
+*.sim/
+*.ip_user_files/
+*.runs/
+*.cache/
+*.Xil/
+.Xil/
+*.bit
+*.bin
+
+# ==========================
+# OS & General Temp Files
+# ==========================
+.DS_Store
+Thumbs.db
+*.bak
+*.swp
+*~
