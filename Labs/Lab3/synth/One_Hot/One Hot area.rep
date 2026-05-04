@@ -1,0 +1,72 @@
+//  Precision RTL Validate 64-bit 2018.1.0.19 (Production Release) Fri Aug 10 05:55:53 PDT 2018
+//  
+//  Copyright (c) Mentor Graphics Corporation, 1996-2018, All Rights Reserved.
+//             Portions copyright 1991-2008 Compuware Corporation
+//                       UNPUBLISHED, LICENSED SOFTWARE.
+//            CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
+//          PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+//  
+//  Running on Windows Server 2016 eladjose@MSTS-ELEC  10.0.17763 x64
+//  
+//  Start time Sat May 03 21:39:17 2025
+
+***************************************************************
+Device Utilization for 7A35TCPG236
+***************************************************************
+Resource                          Used    Avail   Utilization
+---------------------------------------------------------------
+IOs                               4       106       3.77%
+Global Buffers                    1       32        3.13%
+LUTs                              3       20800     0.01%
+CLB Slices                        1       8150      0.01%
+Dffs or Latches                   6       41600     0.01%
+Block RAMs                        0       50        0.00%
+DSP48E1s                          0       90        0.00%
+---------------------------------------------------------------
+
+***********************************************
+
+Library: work    Cell: lab_3    View: INTERFACE
+
+***********************************************
+
+  Cell    Library  References     Total Area
+
+ BUFGP    xca7     1 x
+ FDRE     xca7     5 x      1      5 Dffs or Latches
+ FDSE     xca7     1 x      1      1 Dffs or Latches
+ IBUF     xca7     2 x
+ LUT2     xca7     2 x      1      2 LUTs
+ LUT3     xca7     1 x      1      1 LUTs
+ OBUF     xca7     1 x
+ VCC      xca7     1 x
+
+ Number of ports :                            4
+ Number of nets :                            17
+ Number of instances :                       14
+ Number of references to this view :          0
+
+Total accumulated area : 
+ Number of Dffs or Latches :                  6
+ Number of LUTs :                             3
+ Number of LUTs with LUTNM/HLUTNM :           2
+ Number of accumulated instances :           14
+
+
+*****************************
+ IO Register Mapping Report
+*****************************
+Design: work.lab_3.INTERFACE
+
++-----------+-----------+----------+----------+----------+
+| Port      | Direction |   INFF   |  OUTFF   |  TRIFF   |
++-----------+-----------+----------+----------+----------+
+| clk       | Input     |          |          |          |
++-----------+-----------+----------+----------+----------+
+| reset     | Input     |          |          |          |
++-----------+-----------+----------+----------+----------+
+| coin      | Input     |          |          |          |
++-----------+-----------+----------+----------+----------+
+| coffee    | Output    |          |          |          |
++-----------+-----------+----------+----------+----------+
+Total registers mapped: 0

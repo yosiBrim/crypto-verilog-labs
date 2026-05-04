@@ -1,0 +1,73 @@
+-- POST-SYNTHESIS TIMING REPORTS ARE ESTIMATES AND SHOULD NOT BE RELIED ON TO MAKE QoR DECISIONS. For accurate timing information, please run place-and-route (P&R) and review P&R generated timing reports.
+
+================================================================================================
+                   Clock Frequency Report
+
+	Domain                  Clock Name                            Min Period (Freq)             Required Period (Freq)
+	------                  ----------                            -----------------             ----------------------
+	clk_PS                  VirtualClock                          5.155 (193.986 MHz)           10.000 (100.000 MHz)
+	clk_PS                  clk                                   5.155 (193.986 MHz)           10.000 (100.000 MHz)
+-- Device: Xilinx - ARTIX-7 : 7A35TCPG236 : 1
+-- CTE report summary..
+                  CTE Report Summary
+
+End CTE Report Summary ..... CPU Time Used: 0 sec.
+-- POST-SYNTHESIS TIMING REPORTS ARE ESTIMATES AND SHOULD NOT BE RELIED ON TO MAKE QoR DECISIONS. For accurate timing information, please run place-and-route (P&R) and review P&R generated timing reports.
+
+Setup Slack Path Summary
+
+              Data                                                                       Data
+       Setup  Path                                                                       End 
+Index  Slack  Delay  Source Clock  Dest. Clock     Data Start Pin       Data End Pin     Edge
+-----  -----  -----  ------------  ------------  ------------------  ------------------  ----
+  1    4.845  3.728  clk           VirtualClock  reg_state(5)/C      coffee              Rise
+  2    8.674  1.286  clk           clk           reg_state(4)/C      reg_state(5)/D      Rise
+  3    8.685  1.248  clk           clk           reg_state(0)/C      reg_state(0)/D      Rise
+  4    9.131  0.829  clk           clk           reg_state(3)_1_1/C  reg_state(4)/D      Rise
+  5    9.131  0.829  clk           clk           reg_state(2)_1_0/C  reg_state(3)_1_1/D  Rise
+  6    9.131  0.829  clk           clk           reg_state(1)/C      reg_state(2)_1_0/D  Rise
+  7    9.212  2.148  VirtualClock  clk           coin                reg_state(0)/D      Fall
+  8    9.307  1.691  VirtualClock  clk           reset               reg_state(0)/S      Fall
+
+-- Device: Xilinx - ARTIX-7 : 7A35TCPG236 : 1
+-- CTE report summary..
+                  CTE Report Summary
+
+Analyzing setup constraints. Violations having negative path slack 
+-- Of the 10 requested paths, only 8 were found in the design.
+End CTE Report Summary ..... CPU Time Used: 0 sec.
+-- POST-SYNTHESIS TIMING REPORTS ARE ESTIMATES AND SHOULD NOT BE RELIED ON TO MAKE QoR DECISIONS. For accurate timing information, please run place-and-route (P&R) and review P&R generated timing reports.
+-- Device: Xilinx - ARTIX-7 : 7A35TCPG236 : 1
+-- CTE report timing..
+                  CTE Path Report
+
+
+Critical path #1, (path slack = 4.845):
+
+SOURCE CLOCK: name: clk period: 10.000000
+     Times are relative to the 1st rising edge
+  DEST CLOCK: name: VirtualClock period: 10.000000
+     Times are relative to the 2nd rising edge
+
+NAME              GATE       DELAY    ARRIVAL DIR  FANOUT
+reg_state(5)/C FDRE                   0.000   up
+reg_state(5)/Q FDRE         0.496     0.496   up
+coffee_1_0     (net)        0.341                   3
+coffee_obuf/I  OBUF                   0.837   up
+coffee_obuf/O  OBUF         2.891     3.728   up
+coffee         (net)        0.000                   0
+coffee         (port)                 3.728   up
+
+		Initial edge separation:     10.000
+		Source clock delay:      -    1.427
+		Dest clock delay:        +    0.000
+		                        -----------
+		Edge separation:              8.573
+		Setup constraint:        -    0.000
+		                        -----------
+		Data required time:           8.573
+		Data arrival time:       -    3.728   ( 90.85% cell delay, 9.15% net delay )
+		                        -----------
+		Slack:                        4.845
+
+End CTE Analysis ..... CPU Time Used: 0 sec.
