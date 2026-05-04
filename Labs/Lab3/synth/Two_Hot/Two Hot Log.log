@@ -1,0 +1,91 @@
+# Info: [9569]: Logging project transcript to file Z:/verilog/lab_3/project_2_impl_1/precision.log
+# Info: [9569]: Logging suppressed messages transcript to file Z:/verilog/lab_3/project_2_impl_1/precision.log.suppressed
+# Info: [9552]: Activated implementation project_2_impl_1 in project Z:/verilog/lab_3/project_2.psp.
+new_project -name project_2 -folder Z:/verilog/lab_3 -createimpl_name project_2_impl_1
+# COMMAND: setup_design -encoding=twohot
+setup_design -encoding=twohot
+# COMMAND: add_input_file {lab_3.v}
+add_input_file {lab_3.v}
+# COMMAND: setup_design -manufacturer Xilinx -family ARTIX-7 -part 7A35TCPG236 -speed -1
+# Info: [15300]: Setting up the design to use synthesis library "xca7.syn"
+# Info: [580]: The global max fanout is currently set to 10000 for Xilinx - ARTIX-7.
+# Info: [15326]: Setting Part to: "7A35TCPG236".
+# Info: [15327]: Setting Process to: "1".
+# Info: [7513]: The default input to Vivado place and route has been set to "Verilog".
+# Info: [7512]: The place and route tool for current technology is Vivado.
+setup_design -manufacturer Xilinx -family ARTIX-7 -part 7A35TCPG236 -speed -1
+# COMMAND: setup_design -frequency 100 -input_delay 0 -output_delay 0 -vivado -max_fanout=10000
+# Info: [580]: The global max fanout is currently set to 10000 for Xilinx - ARTIX-7.
+# Info: [7512]: The place and route tool for current technology is Vivado.
+# Info: [7513]: The default input to Vivado place and route has been set to "Verilog".
+setup_design -frequency 100 -input_delay 0 -output_delay 0 -vivado -max_fanout=10000
+# COMMAND: compile
+# Info: [3022]: Reading file: D:/MentorGraphics/PS2018.1_64-bit/Mgc_home/pkgs/psr/techlibs/xca7.syn.
+# Info: [639]: Loading library initialization file D:/MentorGraphics/PS2018.1_64-bit/Mgc_home/pkgs/psr/userware/xilinx_rename.tcl
+# Info: XILINX
+# Info: [40000]: hdl-analyze, Release RTLC-Precision 2018a.17
+# Info: [42003]: Starting analysis of files in library "work"
+# Info: [41002]: Analyzing input file "Z:/verilog/lab_3/lab_3.v" ...
+# Info: [664]: Top module of the design is set to: lab_3.
+# Info: [662]: Current working directory: Z:/verilog/lab_3/project_2_impl_1.
+# Info: [40000]: RTLC-Driver, Release RTLC-Precision 2018a.17
+# Info: [40000]: Last compiled on Jun 28 2018 15:32:49
+# Info: [44512]: Initializing...
+# Info: [44504]: Partitioning design ....
+# Info: [40000]: RTLCompiler, Release RTLC-Precision 2018a.17
+# Info: [40000]: Last compiled on Jun 28 2018 15:52:40
+# Info: [44512]: Initializing...
+# Info: [44522]: Root Module lab_3: Pre-processing...
+# Info: [45144]: Extracted FSM in module lab_3, with state variable = state[2:0], async set/reset state(s) = (none), number of states = 6.
+# Info: [45144]: Re-encoding 6 state FSM as "twohot".
+# Info: [45144]: FSM: State encoding table.
+# Info: [40000]: FSM:	Index	                            Literal	                      Encoding
+# Info: [40000]: FSM:	    0	                                000	                          0011
+# Info: [40000]: FSM:	    1	                                001	                          0101
+# Info: [40000]: FSM:	    2	                                010	                          1001
+# Info: [40000]: FSM:	    3	                                011	                          0110
+# Info: [40000]: FSM:	    4	                                100	                          1010
+# Info: [40000]: FSM:	    5	                                101	                          1100
+# Info: [40000]: The default branch of this FSM is being ignored to allow a more optimal implementation. To preserve it, please specify the attribute safe_fsm_type on the state variable
+# Info: [44523]: Root Module lab_3: Compiling...
+# Info: [44842]: Compilation successfully completed.
+# Info: [44856]: Total lines of RTL compiled: 85.
+# Info: [44835]: Total CPU time for compilation: 0.8 secs.
+# Info: [44513]: Overall running time for compilation: 2.0 secs.
+# Info: [662]: Current working directory: Z:/verilog/lab_3/project_2_impl_1.
+# Info: [15332]: Doing rtl optimizations.
+# Info: [1078]: Constraints: Precision will generate the constraint: create_clock [get_ports {clk}] -name {clk} -period 10 -waveform {0 5} on port:clk. Reason: setup_design -frequency. Please override the constraint if needed.
+# Info: [1081]: Constraints: Precision will generate the following clock domain information against the clocks. Since the clock domain information is not provided by the user for the below clocks, all clocks are assumed to be synchronous clocks. This will result in all paths between the clock domains to be analyzed for timing. If this behaviour is not intended for any clock domain or path, please override using -domain option or false path constraint. Among these clocks, clock with the smallest period will be chosen as the default domain and the rest of the clock periods specified using multiply-by or divide-by factor.
+# Info: Constraints: Precision Generated Clock Domains:
+# Info: 	Domain Name: clk_PS		Clock Name: clk Clock Name: VirtualClock
+# Info: [665]: Finished compiling design.
+compile
+# COMMAND: synthesize
+# Info: [662]: Current working directory: Z:/verilog/lab_3/project_2_impl_1.
+# Warning: [19539]: No debug point is implemented, continuing with the normal synthesis run.
+# Info: [15002]: Optimizing design view:.work.lab_3.INTERFACE
+# Info: [15002]: Optimizing design view:.work.lab_3.INTERFACE
+# Info: [8010]: Gated clock transformations: Begin...
+# Info: [8010]: Gated clock transformations: End...
+# Info: [8053]: Added global buffer BUFGP for Port port:clk
+# Info: [1081]: Constraints: Precision will generate the following clock domain information against the clocks. Since the clock domain information is not provided by the user for the below clocks, all clocks are assumed to be synchronous clocks. This will result in all paths between the clock domains to be analyzed for timing. If this behaviour is not intended for any clock domain or path, please override using -domain option or false path constraint. Among these clocks, clock with the smallest period will be chosen as the default domain and the rest of the clock periods specified using multiply-by or divide-by factor.
+# Info: Constraints: Precision Generated Clock Domains:
+# Info: 	Domain Name: clk_PS		Clock Name: clk Clock Name: VirtualClock
+# Info: [3027]: Writing file: Z:/verilog/lab_3/project_2_impl_1/lab_3.edf.
+# Info: -- Writing file Z:/verilog/lab_3/project_2_impl_1/lab_3.tcl
+# Info: [3027]: Writing file: Z:/verilog/lab_3/project_2_impl_1/lab_3.xdc.
+# Info: [3027]: Writing file: Z:/verilog/lab_3/project_2_impl_1/lab_3.v.
+# Info: -- Writing file Z:/verilog/lab_3/project_2_impl_1/lab_3.tcl
+# Info: [12045]: Starting timing reports generation...
+# Info: [12046]: Timing reports generation done.
+# Info: [12048]: POST-SYNTHESIS TIMING REPORTS ARE ESTIMATES AND SHOULD NOT BE RELIED ON TO MAKE QoR DECISIONS. For accurate timing information, please run place-and-route (P&R) and review P&R generated timing reports.
+# Info: [665]: Finished synthesizing design.
+# Info: [11019]: Total CPU time for synthesis: 0.6 s secs.
+# Info: [11020]: Overall running time for synthesis: 1.6 s secs.
+synthesize
+# COMMAND: report_timing Z:/verilog/lab_3/project_2_impl_1/lab_3_timing.rep -clock_frequency
+report_timing Z:/verilog/lab_3/project_2_impl_1/lab_3_timing.rep -clock_frequency
+# COMMAND: report_timing Z:/verilog/lab_3/project_2_impl_1/lab_3_timing.rep -summary -num_paths 10 -append
+report_timing Z:/verilog/lab_3/project_2_impl_1/lab_3_timing.rep -summary -num_paths 10 -append
+# COMMAND: report_timing Z:/verilog/lab_3/project_2_impl_1/lab_3_timing.rep -num_paths 1 -show_nets -append
+report_timing Z:/verilog/lab_3/project_2_impl_1/lab_3_timing.rep -num_paths 1 -show_nets -append
