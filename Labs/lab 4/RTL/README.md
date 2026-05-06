@@ -1,33 +1,26 @@
-# RTL Source Code - DES Encryption
+# DES Algorithm: Initial and Inverse Permutation Logic
 
-This directory contains the synthesizable Verilog HDL source files for the Data Encryption Standard (DES) implementation. The design follows a modular architecture to ensure clarity, reusability, and efficient hardware mapping.
+This repository contains the hardware implementation and verification for the bit-level shuffling stages of the **Data Encryption Standard (DES)** algorithm.
 
-## 📁 File Descriptions
+## 📄 Overview
+The project focuses on the mathematical symmetry between the **Initial Permutation (IP)** and the **Inverse Initial Permutation (IIP)**. In DES, these stages ensure that data is diffused at the bit level before and after the 16 rounds of the Feistel network.
 
-*   **des_top.v**: The top-level module that integrates the data path, Feistel network, and key scheduling logic.
-*   **permutations.v**: Contains combinational logic for:
-    *   Initial Permutation (IP).
-    *   Final Permutation (FP).
-    *   Expansion Permutation (E-bit).
-    *   Permutation P (within the Feistel function).
-*   **sbox_logic.v**: Implements the eight DES S-Boxes. These are optimized as Look-Up Tables (LUTs) to minimize propagation delay.
-*   **key_schedule.v**: Logic for generating sixteen 48-bit subkeys from the initial 64-bit key, including circular shifts and Permuted Choice 1 & 2 (PC-1, PC-2).
-*   **feistel_function.v**: The core logic of the DES round, combining the expansion, S-Box substitution, and P-permutation.
+## 📁 Included Files
 
-## 🏗 Architecture Overview
+1.  **Permutation.v (RTL):** Implements the Initial Permutation (IP). It rearranges the 64-bit input block based on the standard DES IP table.
+2.  **Inverse_Permutation.v (RTL):** Implements the Final Permutation (FP). This is the exact inverse of the IP stage, designed to return the bits to their original positions.
+3.  **TB_Permutation.v (Testbench):** A verification environment that cascades the two modules to prove their functional correctness.
 
-The implementation is designed for the **Xilinx Artix-7 (Basys3)** FPGA. Key architectural features include:
+## 🛠 Functional Logic
+The core objective of this design is to satisfy the following mathematical identity:
+**Inverse_Permutation(Permutation(Data)) == Data**
 
-### 1. Combinational Permutations
-All bit-level permutations (IP, FP, E, P) are implemented using direct wiring assignments. This approach incurs zero clock cycles of latency and utilizes minimal routing resources[cite: 2].
+### Implementation Details:
+- **Design Type:** Pure Combinational Logic (Zero-Latency).
+- **Optimization:** Optimized for FPGA Look-Up Tables (LUTs) through direct wire assignments.
+- **Verification Method:** Loopback testing using a $monitor system to compare Input vs. Final Output.
 
-### 2. S-Box Implementation
-S-Boxes are implemented using `case` statements, which the Vivado synthesis tool maps efficiently to 6-input LUTs[cite: 2]. This ensures high-speed substitution logic.
-
-### 3. Synchronous Design
-The 16-round encryption cycle is managed by a central Finite State Machine (FSM) or a pipelined structure (depending on the specific lab version), ensuring stability across the 100 MHz clock domain[cite: 2].
-
-## 🛠 Synthesis Guidelines
-*   **Target Device:** Artix-7 XC7A35TCPG236-1[cite: 2].
-*   **Optimization Goal:** Balanced between Area (LUT count) and Speed (Max Frequency).
-*   **Standard:** Verilog-2001 or SystemVerilog.
+## 🚀 How to Run
+1. Add both `Permutation.v` and `Inverse_Permutation.v` to your Vivado/ModelSim project as Design Sources.
+2. Add `TB_Permutation.v` as a Simulation Source.
+3. Run the simulation and observe the console output. A "PASS" status indicates that the bit-mapping is perfectly symmetrical.
