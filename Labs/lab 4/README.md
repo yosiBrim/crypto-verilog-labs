@@ -1,22 +1,21 @@
-# Lab 4: DES Permutation and Inverse Permutation
+# DES Permutation & Inverse Permutation (Lab 4)
 
 ## Overview
-This repository contains the Verilog implementation and simulation of the data permutation and its inverse, taken directly from the Data Encryption Standard (DES) algorithm (FIPS PUB 46-3). 
+This directory contains a strictly structural Verilog implementation of the Initial Permutation (IP) and Inverse Initial Permutation (IP^-1) operations, as defined in the Data Encryption Standard (DES) cryptographic algorithm (FIPS PUB 46-3). 
 
-## Architecture
-The verification environment chains two hardware modules in series to prove functional correctness:
-1. **Permutation Module (`DUT1`):** Takes a 64-bit input and transposes the bits according to the DES standard.
-2. **Inverse Permutation Module (`DUT2`):** Takes the 64-bit scrambled output from `DUT1` and restores it to its original 64-bit state.
+## Design Details
+Unlike automated array-based assignments, this implementation utilizes rigorous, bit-by-bit manual hardwiring. Explicit `assign` statements are used to route all 64 bits individually, demonstrating low-level hardware routing control. The design meticulously adapts the standard DES `[1:64]` mathematical notation into the standard Verilog `[63:0]` vector convention.
 
-## Verification (Testbench)
-The testbench validates the logic using a Stimulus Pattern Generator that applies a circular left rotation on the test pattern `64'h0123456789abcdef`[cite: 3]. 
-System tasks (`$monitor`) are deployed to track the 64-bit data bus at three critical stages[cite: 3]:
-* Input to `DUT1` (Original data)[cite: 3]
-* Output of `DUT1` / Input to `DUT2` (Permuted data)[cite: 3]
-* Output of `DUT2` (Restored data)[cite: 3]
+* **`Permutation` (DUT1):** Receives a 64-bit plaintext block and performs the Initial Permutation routing.
+* **`In_Permutation` (DUT2):** Receives the 64-bit scrambled block and restores it to its exact original state.
 
-## Directory Structure
-* **`docs/`**: Assignment specifications.
-* **`rtl/`**: Verilog source code for both permutation modules.
-* **`tb/`**: Verilog testbench.
-* **`sim/`**: ModelSim transcript logs and waveform captures of the rotating pattern.
+## Functional Verification
+The testbench (`TB_Permutation.v`) chains both modules in series (DUT1 output directly drives DUT2 input) to prove that the permutation and its inverse perfectly cancel each other out. 
+
+**Test Sequence:**
+1. Injects the base hex pattern `64'h0123456789abcdef`.
+2. Applies a 4-bit circular left rotation every 50ns across 16 hardcoded iterations to validate the routing logic against changing data vectors.
+3. A `$monitor` system task continuously logs the original input, the intermediate permuted data, and the restored output.
+
+## Simulation Results
+The verification environment confirms 100% data recovery. The provided transcript logs and waveform captures in the `sim/` directory demonstrate that across all 800ns of simulation and 16 test vectors, the restored output matches the original input flawlessly.
