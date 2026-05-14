@@ -1,8 +1,8 @@
 # Lab 6: DES Algorithm Verification Environment
 
-## 👥 Authors
+## 👥 Author
 * **Yosi Brim**
-* **Elad**
+
 
 ## 📄 Overview
 This project implements a professional verification environment for the **Data Encryption Standard (DES)** algorithm. The focus is on hardware verification methodologies, specifically automated file-based testing.
